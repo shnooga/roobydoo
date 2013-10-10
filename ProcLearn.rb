@@ -1,9 +1,8 @@
-class LambdaProc
+class ProcLearn
   def do_some_proc
     proc_sample(1, "Hello") do | arg1, arg2 |
-      p "Inside do_some_proc"
-      p arg1
-      p arg2
+      p "  Inside do_some_proc"
+      p "    #{arg1}  #{arg2} "
     end
 
   end
@@ -17,5 +16,5 @@ class LambdaProc
 end
 
 
-lambda_proc = LambdaProc.new
-lambda_proc.do_some_proc
+my_proc = ProcLearn.new
+my_proc.do_some_proc
