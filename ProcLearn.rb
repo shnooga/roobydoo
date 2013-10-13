@@ -1,21 +1,25 @@
 class ProcLearn
+  UNO = 1.freeze
+  HELLO = "Hello".freeze
+  WORLD = "World".freeze
+
+  # Blocks are for one time usage
   def do_some_block
-    block_demo(1, "Hello") do | arg1, arg2 |
+    block_demo(UNO, HELLO) do | arg1, arg2 |
       p "  Inside do_some_block"
       p "    #{arg1}  #{arg2} "
     end
   end
 
+  # Procs allow code reuse
   def do_some_proc
-    my_proc = Proc.new() do |param1, param2|
+    my_proc = Proc.new() do |arg1, arg2|
       p " Inside of Proc"
-      #p arg1 = param1 * 10
-      #p arg2 = param2.reverse!
-      #p param1 * 10
-      #p param2.reverse!
+      p "    #{arg1}  #{arg2} "
     end
-    proc_demo(my_proc)
 
+    proc_demo(UNO, HELLO, my_proc) # Call 1st time
+    proc_demo(UNO, WORLD, my_proc) # Call 2nd time
   end
 
   private
@@ -26,9 +30,11 @@ class ProcLearn
     yield arg1, arg2
   end
 
-  def proc_demo(some_proc)
+  def proc_demo(param1, param2, some_proc)
     p "Inside proc_demo"
-    some_proc.call()
+    arg1 = param1 * 10
+    arg2 = param2.reverse
+    some_proc.call(arg1, arg2)
   end
 end
 
